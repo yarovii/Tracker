@@ -27,9 +27,9 @@ public class AccountController {
 
     @PostMapping("/account")
     public String addAccount(@AuthenticationPrincipal User user,
-                             @RequestParam String title, Model model)
+                             @RequestParam String title, String text, Model model)
     {
-        Account account = new Account(title, user);
+        Account account = new Account(title, text, user);
 
         accountRepository.save(account);
         model.addAttribute("accounts", accountRepository.findAllByAuthor(user));
@@ -51,10 +51,17 @@ public class AccountController {
         return "updateAcc";
     }
     @PostMapping("/account/update")
-    public String updateAccount(@RequestParam Long id, @RequestParam String title, Model model){
-        Account account = accountRepository.findAccountById(id);
-        account.setTitle(title);
-        accountRepository.save(account);
+    public String updateAccount(@RequestParam Long id, String title, String text, Model model){
+        if(text != null || title != null) {
+            Account account = accountRepository.findAccountById(id);
+            if(text != null){
+                account.setText(text);
+            }
+            if(title != null) {
+                account.setTitle(title);
+            }
+            accountRepository.save(account);
+        }
         return "redirect:/account";
     }
 

@@ -1,4 +1,3 @@
-/*
 package eu.cz.cvut.project.tracker.model;
 
 import javax.persistence.*;
@@ -14,17 +13,29 @@ public class Debt {
     private String comment;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "debtor_id")
-    private Debtor debtor;
+    @JoinColumn(name = "acc_id")
+    private Account account;
 
-    public Debt(Float price, String comment, Debtor debtor, boolean active) {
+    public Debt() {
+    }
+
+    public Debt(float price, String comment, Account account, boolean active) {
         this.price = price;
         this.comment = comment;
-        this.debtor = debtor;
+        this.account = account;
         this.active = active;
     }
 
-    public Debt() {
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public Long getId() {
@@ -61,4 +72,3 @@ public class Debt {
 
     private boolean active;
 }
-*/

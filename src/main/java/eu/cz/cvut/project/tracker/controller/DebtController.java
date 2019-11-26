@@ -1,38 +1,43 @@
-/*
 package eu.cz.cvut.project.tracker.controller;
 
+import eu.cz.cvut.project.tracker.model.Debt;
 import eu.cz.cvut.project.tracker.model.User;
-import eu.cz.cvut.project.tracker.repository.DebtorRepository;
+import eu.cz.cvut.project.tracker.repository.AccountRepository;
+import eu.cz.cvut.project.tracker.repository.DebtRepository;
 import eu.cz.cvut.project.tracker.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/debtors")
 public class DebtController {
     @Autowired
-    private DebtorRepository debtorRepository;
+    private DebtRepository debtRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private AccountRepository accountRepository;
 
-    public String debtorsList(Model model){
-        model.addAttribute("debtors", debtorRepository.findAll());
-        return "debtors";
+    @GetMapping("/account/{id}")
+    public String debtorsList(@PathVariable Long id,
+                              Model model){
+        model.addAttribute("debts", debtRepository.findAllByAccount_Id(id));
+        model.addAttribute("account", id);
+        return "allDebts";
+    }
+    @PostMapping("/account/{id}")
+    public String debtorsAdd(@PathVariable Long id,
+                              @RequestParam float price,
+                              @RequestParam String comment,
+                              boolean active,
+                              Model model)
+    {
+        Debt debt = new Debt(price, comment, accountRepository.findAccountById(id), active);
+
+        debtRepository.save(debt);
+        model.addAttribute("debts", debtRepository.findAllByAccount_Id(id));
+        model.addAttribute("account", id);
+        return "allDebts";
     }
 
-    @PostMapping("/addDebtorWithDebt")
-    public String addDebtorWithDebt(@RequestParam float price,
-                                    @RequestParam String username,
-                                    String text,
-                                    Model model,
-                                    User user){
-        debtorRepository.
-
-    }
 }
-*/

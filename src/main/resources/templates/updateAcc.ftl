@@ -7,6 +7,7 @@
                 <span class="input-group-text" id="addon-wrapping">@</span>
             </div>
             <input type="text" class="form-control" value="${account.title}" name="title" aria-label="title" aria-describedby="addon-wrapping">
+            <input type="text" class="form-control" value="${account.text}" name="text" aria-label="title" aria-describedby="addon-wrapping">
             <input type="hidden" value="${account.id}" name="id">
             <input type="hidden" name="_csrf" value="${_csrf.token}">
             <button type="submit" class="btn btn-primary">Update</button>

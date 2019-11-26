@@ -11,6 +11,7 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String title;
+    private String text;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
@@ -19,8 +20,17 @@ public class Account {
     public Account() {
     }
 
-    public Account(String title, User author) {
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Account(String title, String text, User author) {
         this.title = title;
+        this.text = text;
         this.author = author;
     }
 
