@@ -1,4 +1,5 @@
 <#import "parts/common.ftl" as co>
+<#import "parts/crud.ftl" as crud>
 
 <@co.page true>
     <h1>Account page</h1>
@@ -39,8 +40,11 @@
         <div class="card-body">
             <h5 class="card-title">Special title treatment</h5>
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
             <a href="#" class="btn btn-primary">Go somewhere</a>
         </div>
+        <@crud.delete "/account/delete" true "${account.id}"/>
+        <@crud.delete "/account/update" false "${account.id}"/>
     </div>
     <#else>
         <h3>No debtors</h3>
