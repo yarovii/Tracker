@@ -1,4 +1,3 @@
-/*
 package eu.cz.cvut.project.tracker.model;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +10,7 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String accName;
+    private String title;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
@@ -20,8 +19,8 @@ public class Account {
     public Account() {
     }
 
-    public Account(String accName, User author) {
-        this.accName = accName;
+    public Account(String title, User author) {
+        this.title = title;
         this.author = author;
     }
 
@@ -33,12 +32,12 @@ public class Account {
         this.id = id;
     }
 
-    public String getAccName() {
-        return accName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setAccName(String accName) {
-        this.accName = accName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public User getAuthor() {
@@ -53,4 +52,3 @@ public class Account {
 
 
 }
-*/
