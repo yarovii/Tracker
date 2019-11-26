@@ -1,4 +1,5 @@
 <#import "parts/common.ftl" as co>
+<#import "parts/crud.ftl" as crud>
 <@co.page true>
     <form action="/account/${account}" method="post">
         <div class="mb-3">
@@ -23,14 +24,12 @@
     <div class="card-deck">
     <#list debts as debt>
         <div class="card">
-            <h5 class="card-header">${debt.price}</h5>
+            <h5 class="card-header">Price: ${debt.price}</h5>
             <div class="card-body">
                 <p class="card-text">${debt.comment}</p>
-
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div><#--
-            <@crud.delete "/account/delete" true "${account.id}"/>
-            <@crud.delete "/account/update" false "${account.id}"/>-->
+            </div>
+            <@crud.delete "/account/${account}/delete" true "${debt.id}"/>
+            <@crud.delete "/account/${account}/update" false "${debt.id}"/>
         </div>
     <#else>
         </div>

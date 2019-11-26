@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface DebtRepository extends JpaRepository<Debt, Long> {
     List<Debt> findAllByAccount_Id(Long id);
+    Debt findDebtById(Long id);
 }

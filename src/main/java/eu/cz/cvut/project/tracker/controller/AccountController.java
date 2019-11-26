@@ -52,16 +52,13 @@ public class AccountController {
     }
     @PostMapping("/account/update")
     public String updateAccount(@RequestParam Long id, String title, String text, Model model){
-        if(text != null || title != null) {
-            Account account = accountRepository.findAccountById(id);
-            if(text != null){
-                account.setText(text);
-            }
-            if(title != null) {
-                account.setTitle(title);
-            }
-            accountRepository.save(account);
-        }
+
+        Account account = accountRepository.findAccountById(id);
+        account.setText(text);
+        account.setTitle(title);
+
+        accountRepository.save(account);
+
         return "redirect:/account";
     }
 
