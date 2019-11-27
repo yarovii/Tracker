@@ -35,9 +35,7 @@ public class DebtController {
                               boolean active,
                               Model model)
     {
-        Debt debt = new Debt(price, comment, accountRepository.findAccountById(id), active);
-
-        debtRepository.save(debt);
+        debtRepository.save(Debt.putData(price, comment, accountRepository.findAccountById(id), active));
         model.addAttribute("debts", debtRepository.findAllByAccount_Id(id));
         model.addAttribute("account", id);
         return "allDebts";
@@ -56,12 +54,14 @@ public class DebtController {
     @PostMapping("/account/{id}/update")
     public String updateDebt(@PathVariable("id") Long acc_id,
                              @RequestParam("debt_id") Long debt_id,
+                             @RequestParam("active") boolean active,
                              float price, String comment,
                              Model model){
         Debt debt = debtRepository.findDebtById(debt_id);
 
         debt.setPrice(price);
         debt.setComment(comment);
+        debt.setActive(active);
         debtRepository.save(debt);
 
         model.addAttribute("debts", debtRepository.findAllByAccount_Id(debt_id));

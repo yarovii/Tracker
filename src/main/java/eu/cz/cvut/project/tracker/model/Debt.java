@@ -11,15 +11,27 @@ public class Debt {
 
     private float price;
     private String comment;
+    private boolean active;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "acc_id")
     private Account account;
 
-    public Debt() {
+    private Debt() {
     }
 
-    public Debt(float price, String comment, Account account, boolean active) {
+    //Singleton pattern
+    public static Debt Debt()
+    {
+        return new Debt();
+    }
+
+    public static Debt putData(float price, String comment, Account account, boolean active)
+    {
+        return new Debt(price, comment, account, active);
+    }
+
+    private Debt(float price, String comment, Account account, boolean active) {
         this.price = price;
         this.comment = comment;
         this.account = account;
@@ -69,6 +81,4 @@ public class Debt {
     public void setActive(boolean active) {
         this.active = active;
     }
-
-    private boolean active;
 }

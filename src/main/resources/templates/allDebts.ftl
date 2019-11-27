@@ -27,6 +27,7 @@
             <h5 class="card-header">Price: ${debt.price}</h5>
             <div class="card-body">
                 <p class="card-text">${debt.comment}</p>
+                <p class="card-text"><#if debt.active>Debt is active<#else>Debt repaid</#if></p>
             </div>
             <@crud.delete "/account/${account}/delete" true "${debt.id}"/>
             <@crud.delete "/account/${account}/update" false "${debt.id}"/>

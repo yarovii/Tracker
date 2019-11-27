@@ -17,7 +17,17 @@ public class Account {
     @JoinColumn(name = "user_id")
     private User author;
 
-    public Account() {
+    private Account() {
+    }
+
+    //Singleton pattern
+    public static Account Account()
+    {
+        return new Account();
+    }
+    public static Account putData(String title, String text, User author)
+    {
+        return new Account(title, text, author);
     }
 
     public String getText() {
@@ -28,7 +38,7 @@ public class Account {
         this.text = text;
     }
 
-    public Account(String title, String text, User author) {
+    private Account(String title, String text, User author) {
         this.title = title;
         this.text = text;
         this.author = author;
