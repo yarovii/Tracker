@@ -44,7 +44,7 @@
             <div class="card-body">
                 <p class="card-text">${account.text}</p>
 
-                <a href="/account/${account.id}" class="btn btn-primary">Go somewhere</a>
+                <a href="/account/${account.id}" class="btn btn-primary">Check debts</a>
             </div>
             <@crud.delete "/account/delete" true "${account.id}"/>
             <@crud.delete "/account/update" false "${account.id}"/>

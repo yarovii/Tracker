@@ -1,0 +1,57 @@
+version: '3'
+services:
+  db:
+    restart: always
+    container_name: "postgresDb"
+    image: postgres:latest
+    ports:
+      - 54320:5432
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "toor"
+      POSTGRES_DB: tracker
+#    environment:
+#      - DEBUG=false
+#
+#      - DB_USER=postgres
+#      - DB_PASS=toor
+#      - DB_NAME=tracker
+    volumes:
+      - my_dbdata:/var/lib/postgresql/data
+#    networks:
+#      - demo
+
+
+
+#  app:
+#    container_name: app
+#    restart: always
+#    build: .
+##      context: ./
+##      dockerfile: Dockerfile
+#    working_dir: /tracker
+#    volumes:
+#      - /data/spring-boot-app
+#    ports:
+#      - "8081:8080"
+#    command: mvn clean spring-boot:run
+#    depends_on:
+#      - db
+#    links:
+#      - db
+#    networks:
+#      - demo
+volumes:
+  my_dbdata:
+#
+#networks:
+#  demo:
+#    driver: bridge
+#networks:
+#  name: bridge
+#networks:
+#  default:
+#    external: true
+#    name: "foo"
+
+
